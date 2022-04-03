@@ -1,0 +1,26 @@
+{
+  "name": "project-atura",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rajni2002/Atura.git"
+  },
+  "author": "Rajnikant dash",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rajni2002/Atura/issues"
+  },
+  "homepage": "https://github.com/Rajni2002/Atura#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.17.3"
+  }
+}
