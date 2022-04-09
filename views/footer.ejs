@@ -1,0 +1,69 @@
+<script defer>
+    function trigger() {
+        let del = document.getElementsByClassName("delete");
+        for (let i = 0; i < del.length; i++) {
+            del[i].addEventListener("click", function () {
+                let li = this.parentElement;
+                console.log("To delete", li);
+                li.remove();
+            })
+        }
+    }
+
+    function newElement() {
+        // Fetching the values
+        let Category = document.getElementById("Category").value;
+        let Amount = document.getElementById("Amount").value;
+        // creating the list item and appending it
+
+        if (Category === '' || Amount === '') {
+            alert("You must write something!");
+        } else {
+            let li = document.createElement("li");
+
+            let cat = document.createElement("span");
+            cat.className = "category"
+            cat.innerText = Category;
+
+            let amnt = document.createElement("span");
+            amnt.className = "amount"
+            amnt.innerText = Amount;
+
+            let del = document.createElement("span");
+            del.className = "delete";
+            del.innerText = "delete";
+
+            li.appendChild(cat);
+            li.appendChild(amnt);
+            li.appendChild(del);
+            document.querySelector("#list ul").appendChild(li);
+        }
+        // Resetting the input values
+        document.getElementById("Category").value = "";
+        document.getElementById("Amount").value = "";
+        trigger()
+    }
+    function sendData() {
+        let ExpenseList = [];
+        let Income = document.getElementById("Income").value;
+        let CategoryList = document.getElementsByClassName("category");
+        let amountList = document.getElementsByClassName("amount");
+        for (let i = 0; i < CategoryList.length; i++) {
+            let object = {
+                Category : CategoryList[i].innerText,
+                Amount: amountList[i].innerText
+            }
+            ExpenseList.push(object);
+        }
+        fetch('/jsondata', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ ExpenseList: ExpenseList, Income: Income })
+        })
+    }
+</script>
+</body>
+
+</html>

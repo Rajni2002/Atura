@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Document</title>
-</head>
-<body>
+<%- include("header") -%>
     <h1>Monthly Budget</h1>
-    <form action="/" method="post">
-        <label >Income</label>
-        <input type="text">
-        <label >Expense Budget</label>
-        <input placeholder="Category" type="text">
-        <input placeholder="Amount" type="text">
-        <button>+</button>
-        <br>
-        <button type="submit">Submit</button>
+    <form>
+        <div id="list">
+            <input type="text" placeholder="Income" id="Income">
+            <br>
+            <input type="text" placeholder="Category" id="Category">
+            <input type="text" placeholder="Amount" id="Amount">
+            <span onclick="newElement()" class="addBtn">Add</span>
+            <ul></ul>
+        </div>
+        <button onclick="sendData()">Submit</button>
     </form>
-</body>
-</html>
+<%- include("footer") -%>

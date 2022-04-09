@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 app.use(express.json());
+app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect("mongodb://localhost:27017/BudgetDB");
@@ -13,26 +14,9 @@ const BudgetSchema = new mongoose.Schema({
 });
 
 const Budgets = mongoose.model("Budget", BudgetSchema);
-
-// const B1 = new Budgets(
-//   {
-//     Income: 90000,
-//     Expenses: [
-//       {
-//         Category: "Food",
-//         Amount: "3000"
-//       },
-//       {
-//         Category: "Appereal",
-//         Amount: "5000"
-//       }
-//     ]
-//   });
-
-// B1.save();
   
 app.get("/", function (req, res) {
-  res.sendFile(__dirname + "/index.html");
+  res.render("monthlyBudget");
 });
 
 app.post("/jsondata", function (req, res) {
