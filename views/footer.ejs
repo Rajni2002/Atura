@@ -1,66 +1,97 @@
 <script defer>
     function trigger() {
-        let del = document.getElementsByClassName("delete");
+        let del = document.querySelectorAll(".delete");
         for (let i = 0; i < del.length; i++) {
             del[i].addEventListener("click", function () {
-                let li = this.parentElement;
-                console.log("To delete", li);
-                li.remove();
+                let parent = this.parentElement;
+                parent.remove();
             })
         }
     }
 
     function newElement() {
         // Fetching the values
-        let Category = document.getElementById("Category").value;
-        let Amount = document.getElementById("Amount").value;
+        let Category = document.getElementById("category").value;
+        let Amount = document.getElementById("amount").value;
+        let colorSelect = document.getElementById("color-select").value;
         // creating the list item and appending it
 
         if (Category === '' || Amount === '') {
             alert("You must write something!");
         } else {
-            let li = document.createElement("li");
+            let expenseDiv = document.createElement("div");
+            expenseDiv.classList += "expense"
 
-            let cat = document.createElement("span");
-            cat.className = "category"
-            cat.innerText = Category;
+            let divCat = document.createElement("div");
+            let divAmt = document.createElement("div");
+            let divCol = document.createElement("div");
+            let divDel = document.createElement("div");
 
-            let amnt = document.createElement("span");
-            amnt.className = "amount"
-            amnt.innerText = Amount;
+            divCat.classList += "category"
+            divAmt.classList += "amount"
+            divCol.classList += "color-select"
+            divDel.classList += "delete"
 
-            let del = document.createElement("span");
-            del.className = "delete";
-            del.innerText = "delete";
+            let pCat = document.createElement("p");
+            let pAmt = document.createElement("p");
+            let pDel = document.createElement("p");
 
-            li.appendChild(cat);
-            li.appendChild(amnt);
-            li.appendChild(del);
-            document.querySelector("#list ul").appendChild(li);
+            pCat.innerText = Category;
+            divCat.appendChild(pCat);
+            pAmt.innerText = Amount;
+            divAmt.appendChild(pAmt)
+            pDel.innerText = "X";
+            divDel.appendChild(pDel);
+
+            let divColTag = document.createElement("div");
+            divColTag.style.width = "20px";
+            divColTag.style.height = "20px";
+            divColTag.style.backgroundColor = colorSelect;
+            divColTag.style.borderRadius = "50%"
+            divCol.appendChild(divColTag);
+
+            expenseDiv.appendChild(divCat);
+            expenseDiv.appendChild(divAmt);
+            expenseDiv.appendChild(divCol);
+            expenseDiv.appendChild(divDel);
+
+            document.querySelector(".expenses").appendChild(expenseDiv);
         }
         // Resetting the input values
-        document.getElementById("Category").value = "";
-        document.getElementById("Amount").value = "";
-        trigger()
+        document.getElementById("category").value = "";
+        document.getElementById("amount").value = "";
+        document.getElementById("color-select").value = "#000000";
+        trigger();
     }
     function sendData() {
-        let ExpenseList = [];
-        let Income = document.getElementById("Income").value;
-        let CategoryList = document.getElementsByClassName("category");
-        let amountList = document.getElementsByClassName("amount");
-        for (let i = 0; i < CategoryList.length; i++) {
+        let expenseList = [];
+
+        let currentDate = new Date();
+        let income = document.getElementById("income").value;
+        let category = document.querySelectorAll(".category p");
+        let amount = document.querySelectorAll(".amount p");
+        let colorCode = document.querySelectorAll(".color-select div");
+        for (let i = 0; i < category.length; i++) {
             let object = {
-                Category : CategoryList[i].innerText,
-                Amount: amountList[i].innerText
+                category: category[i].innerText,
+                amount: amount[i].innerText,
+                colorCode: colorCode[i].style.backgroundColor
             }
-            ExpenseList.push(object);
+            console.log(object);
+            expenseList.push(object);
         }
         fetch('/jsondata', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ ExpenseList: ExpenseList, Income: Income })
+            body: JSON.stringify(
+                { 
+                    year: currentDate.getFullYear(),
+                    month: currentDate.getMonth(),
+                    expenseList: expenseList,
+                    income: income 
+                })
         })
     }
 </script>

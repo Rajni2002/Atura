@@ -1,0 +1,34 @@
+#listColorTag option span {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+}
+section button{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgb(197, 157, 235);
+    cursor: pointer;
+}
+input[type=color]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    top: 6px;
+    background-color: white;
+}
+input[type=color]::-webkit-color-swatch{
+    border-radius: 50%;
+    border: none;
+}
+.expense {
+    display: flex;
+    flex-direction: row;
+}

@@ -1,31 +1,39 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
+mongoose.connect("mongodb://localhost:27017/BudgetDB");
 const app = express();
+
 app.use(express.json());
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/BudgetDB");
+
+// Schema and model for Monthly Budget
 const BudgetSchema = new mongoose.Schema({
-  Income: Number,
-  Expenses: [{ Category: String, Amount: String }],
+  income: Number,
+  year: Number,
+  month: Number,//1 based indexing
+  expenses: [{ category: String, amount: String, colorCode: String }],
 });
 
 const Budgets = mongoose.model("Budget", BudgetSchema);
   
+
 app.get("/", function (req, res) {
   res.render("monthlyBudget");
 });
 
 app.post("/jsondata", function (req, res) {
-    console.log(Number(req.body.Income), req.body.ExpenseList);
-  const newBudget = new Budgets({
-      Income: Number(req.body.Income),
-      Expenses: req.body.ExpenseList
-  })
-  newBudget.save();
+    console.log(req.body);
+    const currBudget = new Budgets({
+      income: Number(req.body.income),
+      year: req.body.year,
+      month: req.body.month,
+      expenses: req.body.expenseList
+    });
+    currBudget.save();
 });
 
 app.listen(3000, function () {
