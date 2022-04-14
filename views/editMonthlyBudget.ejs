@@ -1,0 +1,29 @@
+<%- include("components/header") -%>
+    <%- include("components/navbar") -%>
+    <%- include("components/month") -%>
+        <h2>Monthly Budget</h2>
+        <main>
+            <input type="text" placeholder="Income" id="income">
+            <br>
+            <h3>Expenses</h3>
+            <section>
+                <div class="inputs">
+                    <div>
+                        <input type="text" placeholder="Category" id="category">
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Amount" id="amount">
+                    </div>
+                    <div>
+                        <input type="color" id="color-select">
+                    </div>
+                    <div>
+                        <button onclick="newElement()">+</button>
+                    </div>
+                </div>
+                <div class="expenses"></div>
+            </section>
+            <button onclick="sendData()">submit</button>
+        </main>
+
+        <%- include("components/footer") -%>

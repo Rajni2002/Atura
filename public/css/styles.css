@@ -1,7 +1,18 @@
-#listColorTag option span {
-    width: 10px;
-    height: 10px;
-    background-color: red;
+main {
+    width: 25vw;
+}
+
+.inputs, .expenseitems{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.colorCode div{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    position: relative;
+    top: 10px;
 }
 section button{
     width: 25px;
@@ -21,7 +32,7 @@ input[type=color]{
     border-radius: 50%;
     cursor: pointer;
     position: relative;
-    top: 6px;
+    top: -5px;
     background-color: white;
 }
 input[type=color]::-webkit-color-swatch{
@@ -31,4 +42,5 @@ input[type=color]::-webkit-color-swatch{
 .expense {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }

@@ -1,0 +1,35 @@
+<%- include("components/header") -%>
+    <%- include("components/navbar") -%>
+        <%- include("components/month") -%>
+        <button><a href="/fillBudget">update</a></button>
+            <main>
+                <div class="expenseitems">
+                    <div class="category">
+                        <p>Category</p>
+                    </div>
+                    <div class="amount">
+                        <p>Amount</p>
+                    </div>
+                    <div>
+                        <p>Color Tag</p>
+                    </div>
+                </div>
+                <% expenseList.forEach(function(item){ %>
+                    <div class="expenseitems">
+                        <div class="category">
+                            <p>
+                                <%=item.category%>
+                            </p>
+                        </div>
+                        <div class="amount">
+                            <p>
+                                <%=item.amount%>
+                            </p>
+                        </div>
+                        <div class="colorCode">
+                            <div style="background-color: <%=item.colorCode%>"></div>
+                        </div>
+                        </div>
+                        <%})%>
+            </main>
+            <%- include("components/footer") -%>
