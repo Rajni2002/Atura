@@ -83,6 +83,7 @@ function newElement() {
   trigger();
 }
 function sendData() {
+  console.log("clicked");
   let expenseList = [];
   let income = document.getElementById("income").value;
   let category = document.querySelectorAll(".category p");
@@ -91,7 +92,7 @@ function sendData() {
   for (let i = 0; i < category.length; i++) {
     let object = {
       category: category[i].innerText,
-      amount: amount[i].innerText,
+      amount: Number(amount[i].innerText),
       colorCode: colorCode[i].style.backgroundColor,
     };
     console.log(object);
@@ -109,5 +110,8 @@ function sendData() {
       income: income,
     }),
   });
-  window.open("/budget","_self");
+  setTimeout(()=>{
+    window.location.replace("/budget");
+  }, 1000)
+
 }
