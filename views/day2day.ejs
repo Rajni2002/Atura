@@ -1,0 +1,64 @@
+<%- include("components/d2dheader") -%>
+    <%- include("components/navbar") -%>
+
+        <div class="card">
+            <div class="cardHeader">
+                <div>
+                    <button id="previous" onclick="previous()">Previous</button>
+                </div>
+                <div>
+                    <h3 id="monthAndYear"></h3>
+                </div>
+                <div>
+                    <button id="next" onclick="next()">Next</button>
+                </div>
+            </div>
+            <table id="calender">
+                <thead>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody id="calender-body"></tbody>
+            </table>
+            <div id="newExpenseModal">
+                <h3></h3>
+                <div>
+                    <label for="categories">Category: </label>
+                    <select id="category">
+                        <option disabled>Choose a category:</option>
+                    </select>
+                    <br>
+                    <label for="categories">Amount: </label>
+                    <input type="text" name="amount" id="amount">
+                    <br>
+                    <label for="categories">Note: </label>
+                    <input type="text" name="note" id="note">
+                    <br>
+                    <button id="saveButton">Add</button>
+                    <button id="cancelButton">Cancel</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Note</th>
+                        </tr>
+                        <tbody>
+                            
+                        </tbody>
+                    </thead>
+                </table>
+            </div>
+            <div id="modalBackDrop"></div>
+        </div>
+        </div>
+
+        <%- include("components/d2dFooter.ejs") -%>

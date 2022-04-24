@@ -14,7 +14,8 @@ const monthArray = [
 ];
 let currentDate = new Date();
 let currMonth = currentDate.getMonth();
-document.querySelector(".currMonth").innerText = monthArray[currMonth];
+document.querySelector(".currMonth").innerText = monthArray[currMonth]+" "+currentDate.getFullYear();
+
 
 function trigger() {
   let del = document.querySelectorAll(".delete");
