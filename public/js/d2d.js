@@ -39,7 +39,6 @@ function previous() {
 }
 
 function buildCalender(month, year) {
-  console.log(month, year);
   let firstDay = new Date(year, month).getDay();
 
   let tbl = document.getElementById("calender-body");
@@ -47,21 +46,22 @@ function buildCalender(month, year) {
 
   monthAndYear.innerHTML = months[month] + " " + year;
 
-  let arrExpenses;
+  let arrExpenses = [];
 
   let xhr = new XMLHttpRequest();
-  xhr.onload = function () {
-    if (xhr.status >= 200 && xhr.status < 300) {
-      arrExpenses = JSON.parse(xhr.responseText);
+  xhr.onload = async function () {
+    const xhrObject = await xhr;
+    if (xhrObject.status >= 200 && xhrObject.status < 300) {
+      arrExpenses = await JSON.parse(xhrObject.responseText);
       console.log(arrExpenses);
     } else {
-      console.log(JSON.parse(xhr.responseText));
+      console.log(JSON.parse(xhrObject.responseText));
     }
   };
   xhr.open("GET", "dailyExpense");
   xhr.send();
 
-  setTimeout(function () {
+  setTimeout(() => {
     let date = 1;
     for (let i = 0; i < 6; ++i) {
       let row = document.createElement("tr");
@@ -80,7 +80,8 @@ function buildCalender(month, year) {
           let cell = document.createElement("td");
           let cellDiv = document.createElement("div");
           if (date == today.getDate() && month == today.getMonth()) {
-            cellDiv.style.backgroundColor = "rgb(255, 196, 137)";
+            // cellDiv.style.backgroundColor = "rgb(255, 255, 255)";
+            cellDiv.classList += "selected";
           }
           let cellP = document.createElement("p");
           cellP.innerText = date;
@@ -91,7 +92,6 @@ function buildCalender(month, year) {
               element.month == month &&
               element.year == year
             ) {
-              console.log("Got it");
               let elementExpenses = element.expenses;
               let sum = 0;
               elementExpenses.forEach(function (e) {
@@ -232,26 +232,26 @@ function openModal(date, month, year) {
   document
     .getElementById("cancelButton")
     .addEventListener("click", function () {
+      document.querySelector("#newExpenseModal tbody").innerHTML = "";
+      document.getElementById("calender-body").innerHTML = "";
       newExpenseModal.style.display = "none";
       modalBackDrop.style.display = "none";
       amount.value = "";
       note.value = "";
       category.innerHTML = "";
-      document.querySelector("#newExpenseModal tbody").innerHTML = " ";
       buildCalender(currentMonth, currentYear);
     });
 }
 
 function AfterBuildCalender(month, year) {
-  console.log("yea");
   let calenderCollections = document.querySelectorAll(
     "#calender-body tr td div"
   );
   calenderCollections.forEach(function (cell) {
     cell.addEventListener("click", function () {
-      console.log(cell.childNodes[0].innerText);
-      if (cell.childNodes[0].innerText != "")
+      if (cell.childNodes[0].innerText != ""){
         openModal(Number(cell.childNodes[0].innerText), month, year);
+      }
     });
   });
 }

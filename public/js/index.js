@@ -12,6 +12,10 @@ const monthArray = [
   "November",
   "December",
 ];
+
+const navbar = document.getElementById('navbar')
+
+
 let currentDate = new Date();
 let currMonth = currentDate.getMonth();
 document.querySelector(".currMonth").innerText = monthArray[currMonth]+" "+currentDate.getFullYear();

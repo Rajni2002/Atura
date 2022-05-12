@@ -4,13 +4,19 @@
         <div class="card">
             <div class="cardHeader">
                 <div>
-                    <button id="previous" onclick="previous()">Previous</button>
+                    <button id="previous" onclick="previous()">
+                        <span class="material-symbols-outlined">
+                            arrow_back
+                            </span>
+                    </button>
                 </div>
                 <div>
                     <h3 id="monthAndYear"></h3>
                 </div>
                 <div>
-                    <button id="next" onclick="next()">Next</button>
+                    <button id="next" onclick="next()"><span class="material-symbols-outlined">
+                            arrow_forward
+                        </span></button>
                 </div>
             </div>
             <table id="calender">
@@ -51,9 +57,9 @@
                             <th>Amount</th>
                             <th>Note</th>
                         </tr>
-                        <tbody>
-                            
-                        </tbody>
+                    <tbody>
+
+                    </tbody>
                     </thead>
                 </table>
             </div>

@@ -1,46 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;1,600&display=swap");
 main {
-    width: 25vw;
+  width: 25vw;
 }
 
-.inputs, .expenseitems{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+body {
+  height: 100vh;
+  width: 100vw;
+  font-family: "Roboto Mono", monospace;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  background: url("../images/Clarence.png");
 }
-.colorCode div{
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    position: relative;
-    top: 10px;
+
+.inputs,
+.expenseitems {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-section button{
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    border: none;
-    background-color: rgb(197, 157, 235);
-    cursor: pointer;
+.colorCode div {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  position: relative;
+  top: 10px;
 }
-input[type=color]{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 30px;
-    height: 32px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
-    top: -5px;
-    background-color: white;
+section button {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgb(197, 157, 235);
+  cursor: pointer;
 }
-input[type=color]::-webkit-color-swatch{
-    border-radius: 50%;
-    border: none;
+input[type="color"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  top: -5px;
+  background-color: white;
+}
+input[type="color"]::-webkit-color-swatch {
+  border-radius: 50%;
+  border: none;
 }
 .expense {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

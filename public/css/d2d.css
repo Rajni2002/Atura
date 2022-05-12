@@ -1,11 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;1,600&display=swap");
+@import url("https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0");
+@import url("https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0");
+
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: "Roboto Mono", monospace;
+  background: url("../images/Clarence.png");
+}
+.card {
+  height: 90vh;
+  width: 55vw;
+  margin: 2rem 2rem 2rem 2rem;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(13px);
+  border-radius: 10px;
+  border: 0.5px solid rgba(255, 255, 255, 0.18);
+}
 #calender {
-  background-color: rgb(245, 245, 245);
   padding: 1rem;
   border-radius: 5px;
   margin-top: 0.5rem;
 }
+
+#calender thead {
+  width: 100%;
+}
+
+
 .cardHeader {
-  width: 20vw;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  width: 30vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -13,14 +45,26 @@
 
 .cardHeader div h3 {
   margin: 0;
+  font-size: 2.5rem;
 }
 
 #calender-body tr td div {
+  margin: 0.5rem;
   width: 90px;
   height: 80px;
   border-radius: 5px;
-  background-color: rgb(255, 255, 255);
-  border: 0.5px solid gray;
+  background-color: rgb(233, 230, 230);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 2px rgba(255, 255, 255, 0.075),
+    inset 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+.selected {
+  /* box-shadow: -2px -2px 6px rgba(74, 73, 73, 0.6),
+   -2px -2px 4px rgba(74, 73, 73, 0.4),
+   2px 2px 2px rgba(74, 73, 73, 0.05),
+   2px 2px 4px rgba(74, 73, 73, 0.1) !important; */
+  border: 2px solid rgb(0, 0, 0);
 }
 #calender-body tr td div p {
   border-radius: 5px;
@@ -30,7 +74,10 @@
   /* text-align: center; */
 }
 #calender-body tr td div:hover {
-  transform: scale(1.2);
+  box-shadow: inset -2px -2px 6px rgba(74, 73, 73, 0.6),
+    inset -2px -2px 4px rgba(74, 73, 73, 0.4),
+    inset 2px 2px 2px rgba(74, 73, 73, 0.05),
+    inset 2px 2px 4px rgba(74, 73, 73, 0.1);
 }
 #newExpenseModal {
   display: none;
@@ -55,4 +102,16 @@
   height: 100vh;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.8);
+}
+#previous,
+#next {
+  cursor: pointer;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 2px rgba(255, 255, 255, 0.075),
+    inset 2px 2px 4px rgba(0, 0, 0, 0.15);
 }
