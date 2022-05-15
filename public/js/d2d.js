@@ -1,4 +1,5 @@
 let today = new Date();
+let arrExpenses = [];
 const months = [
   "Jan",
   "Feb",
@@ -26,6 +27,7 @@ let currentYear = today.getFullYear();
 let currentMonth = today.getMonth();
 
 buildCalender(currentMonth, currentYear);
+// buid
 
 function next() {
   currentYear = currentMonth == 11 ? currentYear + 1 : currentYear;
@@ -37,7 +39,90 @@ function previous() {
   currentMonth = currentMonth == 0 ? 11 : currentMonth - 1;
   buildCalender(currentMonth, currentYear);
 }
+function buildPie(currentMonth, currentYear) {
+  document.getElementById("chart").innerHTML = "";
+  const currentMonthExpenses = [];
+  if (arrExpenses.length != 0) {
+    arrExpenses.forEach(function (e) {
+      if (e.month == currentMonth && e.year == currentYear) {
+        currentMonthExpenses.push(e.expenses);
+      }
+    });
+    fetch("/fetchCategories", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        month: currentMonth,
+        year: currentYear,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const arrExpenses = data.expenses;
+        const expensesLablels = [];
+        arrExpenses.forEach(function (e) {
+          expensesLablels.push(e.category);
+        });
+        const amountArray = [];
+        for (let i = 0; i < expensesLablels.length; i++) {
+          amountArray.push(0);
+        }
+        currentMonthExpenses.forEach(function (expense) {
+          expense.forEach(function (e) {
+            let index = expensesLablels.indexOf(e.category);
+            amountArray[index] += e.amount;
+          });
+        });
 
+        var options = {
+          series: amountArray,
+          labels: expensesLablels,
+          chart: {
+            width: 500,
+            type: "donut",
+          },
+          plotOptions: {
+            pie: {
+              startAngle: -90,
+              endAngle: 270,
+            },
+          },
+          dataLabels: {
+            enabled: true,
+            formatter: function (val) {
+              return val + "%";
+            },
+          },
+          fill: {
+            type: "gradient",
+          },
+          legend: {
+            formatter: function (val, opts) {
+              return val + " - " + opts.w.globals.series[opts.seriesIndex];
+            },
+          },
+          title: {
+            text: "Pie chart ",
+          },
+          plotOptions: {
+            pie: {
+              expandOnClick: true,
+            },
+          },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  } else {
+    document.querySelector("#chart").innerText = "Good";
+  }
+}
 function buildCalender(month, year) {
   let firstDay = new Date(year, month).getDay();
 
@@ -45,8 +130,6 @@ function buildCalender(month, year) {
   tbl.innerHTML = "";
 
   monthAndYear.innerHTML = months[month] + " " + year;
-
-  let arrExpenses = [];
 
   let xhr = new XMLHttpRequest();
   xhr.onload = async function () {
@@ -111,6 +194,7 @@ function buildCalender(month, year) {
       tbl.appendChild(row);
     }
     AfterBuildCalender(month, year);
+    buildPie(month, year);
   }, 1000);
 }
 
@@ -239,7 +323,7 @@ function openModal(date, month, year) {
       amount.value = "";
       note.value = "";
       category.innerHTML = "";
-      buildCalender(currentMonth, currentYear);
+      location.reload(true);
     });
 }
 
@@ -249,7 +333,7 @@ function AfterBuildCalender(month, year) {
   );
   calenderCollections.forEach(function (cell) {
     cell.addEventListener("click", function () {
-      if (cell.childNodes[0].innerText != ""){
+      if (cell.childNodes[0].innerText != "") {
         openModal(Number(cell.childNodes[0].innerText), month, year);
       }
     });

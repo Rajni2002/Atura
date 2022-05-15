@@ -1,8 +1,12 @@
 <%- include("components/header") -%>
     <%- include("components/navbar") -%>
         <%- include("components/month") -%>
-        <button><a href="/fillBudget">update</a></button>
             <main>
+                <a href="/fillBudget">
+                    <div id="update">
+                        Update
+                    </div>
+                </a>
                 <div class="expenseitems">
                     <div class="category">
                         <p>Category</p>
@@ -23,8 +27,9 @@
                                 <%=item.amount%>
                             </p>
                         </div>
-                        </div>
-                        <%})%>
+                    </div>
+                    <%})%>
             </main>
-        </div>
+            </div>
+            </header>
             <%- include("components/footer") -%>

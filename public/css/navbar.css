@@ -41,26 +41,18 @@
   border: 0.5px solid rgba(255, 255, 255, 0.18);
   margin: 2rem 2rem 2rem 2rem;
 }
-#navbar h1 {
-  background: #ffffff;
-  border: none;
-  border-radius: 0.5rem;
-  color: #444;
-  text-align: center;
-  outline: none;
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
-  box-shadow:  -6px -6px 14px rgba(199, 197, 197, 0.7),
-               -6px -6px 10px rgba(255, 255, 255, .5),
-               6px 6px 8px rgba(255, 255, 255, .075),
-               6px 6px 10px rgba(0, 0, 0, .15);
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  margin-left: 3.5rem;
-  width: 50%;
+#navbar div:first-child img{
+  width: 15rem;
+  height: 5rem;
+  border-radius: 20px;
+  margin: 20px auto auto 1.5rem;
 }
-#navbar h1:hover {
+
+#navbar div:first-child:hover{
   animation: rubberBand 1.5s;
+
 }
+
 #navbar ul {
   list-style: none;
   text-align: left;
