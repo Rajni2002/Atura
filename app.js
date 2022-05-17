@@ -165,6 +165,10 @@ app.post("/jsondata", function (req, res) {
   res.redirect("/budget");
 });
 
+app.get("/analytics", function(req, res){
+  res.render("analytics");
+})
+
 app.listen(3000, function () {
   console.log("Server is up and running");
 });
