@@ -357,10 +357,10 @@ function buildBasicFinanceCharts() {
     },
   };
   new ApexCharts(document.querySelector("#expenses"), options).render();
-  buildAssetCharts(labels, savings, expenseByCategories);
+  buildAssetCharts(labels, savings);
 }
 
-function buildAssetCharts(labels, savings, expenseByCategories) {
+function buildAssetCharts(labels, savings) {
   let totalAssests = [];
   let sum = 0;
   savings.forEach(function (e) {
@@ -389,9 +389,6 @@ function buildAssetCharts(labels, savings, expenseByCategories) {
     assetsByMonth[3] = assets.bonds[i];
   }
 
-  assetsByMonth.forEach((e) => {
-    console.log(e);
-  });
 
   let options = {
     chart: {
