@@ -27,7 +27,6 @@ let currentYear = today.getFullYear();
 let currentMonth = today.getMonth();
 
 buildCalender(currentMonth, currentYear);
-// buid
 
 function next() {
   currentYear = currentMonth == 11 ? currentYear + 1 : currentYear;

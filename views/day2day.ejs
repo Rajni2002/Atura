@@ -33,38 +33,40 @@
                 </thead>
                 <tbody id="calender-body"></tbody>
             </table>
-            <div id="newExpenseModal">
-                <h3></h3>
-                <div>
-                    <label for="categories">Category: </label>
-                    <select id="category">
-                        <option disabled>Choose a category:</option>
-                    </select>
-                    <br>
-                    <label for="categories">Amount: </label>
-                    <input type="text" name="amount" id="amount">
-                    <br>
-                    <label for="categories">Note: </label>
-                    <input type="text" name="note" id="note">
-                    <br>
-                    <button id="saveButton">Add</button>
-                    <button id="cancelButton">Cancel</button>
-                </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Category</th>
-                            <th>Amount</th>
-                            <th>Note</th>
-                        </tr>
-                    <tbody>
-
-                    </tbody>
-                    </thead>
-                </table>
-            </div>
-            <div id="modalBackDrop"></div>
         </div>
+        <div id="newExpenseModal">
+            <button id="cancelButton"><span class="material-symbols-outlined">
+                    close
+                </span></button>
+            <div>
+                <label for="categories">Category: </label>
+                <br>
+                <select id="category">
+                    <option disabled>Choose a category:</option>
+                </select>
+                <br>
+                <input type="text" name="amount" id="amount" placeholder="Amount">
+                <br>
+                <input type="text" name="note" id="note" placeholder="Note">
+                <br>
+                <button id="saveButton"><span class="material-symbols-outlined">
+                    add
+                </span></button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Note</th>
+                    </tr>
+                <tbody>
+
+                </tbody>
+                </thead>
+            </table>
+        </div>
+        <div id="modalBackDrop"></div>
 
         </header>
 
